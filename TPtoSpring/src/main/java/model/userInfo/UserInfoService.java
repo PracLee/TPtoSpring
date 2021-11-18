@@ -1,28 +1,28 @@
 package model.userInfo;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface UserInfoService {
-	public ArrayList<UserInfoVO> SelectAll();
+	public List<UserInfoVO> SelectAll();
 
 	// SELECT ONE
 	public UserInfoVO SelectOne(UserInfoVO vo);
 
 	// INSERT 
-	public boolean InsertDB(UserInfoVO vo);
+	public void InsertDB(UserInfoVO vo);
 
 	// DELETE
-	public boolean DeleteDB(UserInfoVO vo);
+	public void DeleteDB(UserInfoVO vo);
 
 	// UPDATE
-	public boolean UpdateDB(UserInfoVO vo);
+	public void UpdateDB(UserInfoVO vo);
 
 
 	// Method for find user ID and PW.
 	public UserInfoVO Find(UserInfoVO vo);
 
 
-	public boolean UpdateProfile(UserInfoVO vo);
+	public void UpdateProfile(UserInfoVO vo);
 	// Method for find user's overlapped ID.
-	public boolean CheckID(String id) ;
+	public void CheckID(String id) ;
 }
