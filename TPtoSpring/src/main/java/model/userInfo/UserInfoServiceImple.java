@@ -12,61 +12,51 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserInfoServiceImple implements UserInfoService{
-	
-	@Autowired
-	private JdbcTemplate jdbc;
-	
-	//  Basic CRUD form
-	private static String sql_SELECT_ALL = "SELECT * FROM userInfo";
-	private static String sql_SELECT_ONE = "SELECT * FROM userInfo WHERE id=? AND pw=?";
-	private static String sql_INSERT = "INSERT INTO userInfo (id, pw, name) VALUES(?, ?, ?)";
-	private static String sql_DELETE = "DELETE FROM userInfo WHERE id=?";
-	private static String sql_UPDATE = "UPDATE userInfo SET name=?, pw=? WHERE id=?";
 
-	// Various Functions form
-	private static String sql_updateProfile = "UPDATE userinfo SET profile=? WHERE id=?";
-	private static String sql_FindInfo = "SELECT * FROM userInfo WHERE id=?";
+	@Autowired
+	private UserInfoDAO dao;
+
+	
 	@Override
 	public List<UserInfoVO> SelectAll() {
 		// TODO Auto-generated method stub
-		return jdbc.query(sql_SELECT_ALL, new UserInfoRowMapper());
+		return dao.getUserList();
 	}
 
 	@Override
 	public UserInfoVO SelectOne(UserInfoVO vo) {
 		// TODO Auto-generated method stub
-		return jdbc.queryForObject(sql_SELECT_ONE, new UserInfoRowMapper());
+		return dao.login();
 	}
 
 	@Override
 	public void InsertDB(UserInfoVO vo) {
 		// TODO Auto-generated method stub
-		
-		
+		dao.joinUs(vo);
 	}
 
 	@Override
 	public void DeleteDB(UserInfoVO vo) {
 		// TODO Auto-generated method stub
-		
+		dao.deleteUser(vo);
 	}
 
 	@Override
 	public void UpdateDB(UserInfoVO vo) {
 		// TODO Auto-generated method stub
-		
+		dao.updateUser(vo);
 	}
 
 	@Override
 	public UserInfoVO Find(UserInfoVO vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return jdbc.queryForObject(sql_FindInfo, new UserInfoRowMapper());
 	}
 
 	@Override
 	public void UpdateProfile(UserInfoVO vo) {
 		// TODO Auto-generated method stub
-
+		jdbc.update(sql_updateProfile, vo.getProfile(), vo.getId());
 	}
 
 	@Override

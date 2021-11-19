@@ -17,27 +17,28 @@ public class ReplyServiceImple implements ReplyService{
 	}
 
 	@Override
-	public boolean InsertDB(ReplyVO vo) {
+	public void InsertDB(ReplyVO vo) {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
 	@Override
-	public boolean DeleteDB(ReplyVO vo) {
+	public void DeleteDB(ReplyVO vo) {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
 	@Override
-	public boolean UpdateDB(ReplyVO vo) {
+	public void UpdateDB(ReplyVO vo) {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
 	@Override
-	public boolean likeCntUp(ReplyVO vo) {
+	public void likeCntUp(ReplyVO vo) {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
+
 
 }
