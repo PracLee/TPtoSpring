@@ -1,9 +1,12 @@
 package model.userInfo;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
 public class UserInfoDAO {
 	@Autowired
@@ -39,7 +42,25 @@ public class UserInfoDAO {
 		jdbc.update(sql_UPDATE,vo.getName(),vo.getPw(),vo.getId());
 	}
 	
-	public UserInfoVO findUser(UserInfo vo) {
-		
+	public UserInfoVO findUser(UserInfoVO vo) {
+		return jdbc.queryForObject(sql_FindInfo, new UserInfoRowMapper());
 	}
+	
+	public void userUpdate(UserInfoVO vo) {
+		jdbc.update(sql_updateProfile, vo.getProfile(), vo.getId());
+	}
+}
+
+class UserInfoRowMapper implements RowMapper<UserInfoVO>{
+
+	@Override
+	public UserInfoVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+		UserInfoVO data = new UserInfoVO();
+		data.setId(rs.getString("id"));
+		data.setName(rs.getString("name"));
+		data.setProfile(rs.getString("profile"));
+		data.setPw(rs.getString("pw"));
+		return data;
+	}
+
 }

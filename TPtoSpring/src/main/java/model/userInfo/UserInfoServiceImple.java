@@ -50,13 +50,13 @@ public class UserInfoServiceImple implements UserInfoService{
 	@Override
 	public UserInfoVO Find(UserInfoVO vo) {
 		// TODO Auto-generated method stub
-		return jdbc.queryForObject(sql_FindInfo, new UserInfoRowMapper());
+		return dao.findUser(vo);
 	}
 
 	@Override
 	public void UpdateProfile(UserInfoVO vo) {
 		// TODO Auto-generated method stub
-		jdbc.update(sql_updateProfile, vo.getProfile(), vo.getId());
+		dao.updateUser(vo);
 	}
 
 	@Override
@@ -67,16 +67,4 @@ public class UserInfoServiceImple implements UserInfoService{
 
 }
 
-class UserInfoRowMapper implements RowMapper<UserInfoVO>{
 
-	@Override
-	public UserInfoVO mapRow(ResultSet rs, int rowNum) throws SQLException {
-		UserInfoVO data = new UserInfoVO();
-		data.setId(rs.getString("id"));
-		data.setName(rs.getString("name"));
-		data.setProfile(rs.getString("profile"));
-		data.setPw(rs.getString("pw"));
-		return data;
-	}
-
-}
