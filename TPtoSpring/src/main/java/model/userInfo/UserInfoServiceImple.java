@@ -26,7 +26,7 @@ public class UserInfoServiceImple implements UserInfoService{
 	@Override
 	public UserInfoVO SelectOne(UserInfoVO vo) {
 		// TODO Auto-generated method stub
-		return dao.login();
+		return dao.login(vo);
 	}
 
 	@Override

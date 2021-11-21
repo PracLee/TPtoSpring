@@ -2,8 +2,13 @@ package model.reply;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class ReplyServiceImple implements ReplyService{
 
+	@Autowired
+	ReplyDAO dao;
+	
 	@Override
 	public ArrayList<ReplyVO> SelectAll() {
 		// TODO Auto-generated method stub
