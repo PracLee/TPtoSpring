@@ -60,6 +60,10 @@ public class ReplyDAO {
 		jdbc.update(sql_likeCntUp, vo.getRnum());
 	}
 	
+	public void comCntUp(ReplyVO vo) {
+		
+	}
+	
 }
 class ReplyRowMapper implements RowMapper<ReplyVO>{
 
